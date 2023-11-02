@@ -4,7 +4,7 @@ This respository contains the bootblock modules required to run OpenBMC on suppo
 The bootblock is supplied in binary form.  It consists of essential startup code needed for the HPE BMC system-on-a-chip (SOC), including core functions such as enabling caches and DRAM before transferring control to U-Boot.
 
 ## Terms of Use
-© Copyright 2020 Hewlett Packard Enterprise Development LP. This software is HPE proprietary and its use is subject to the terms and conditions of the HPE EULA and Software Licensing Terms, which may be amended from time to time (“HPE EULA”). By downloading, copying or using this software you agree to the terms of the HPE EULA. The HPE EULA may be found on the HPE website, currently at www.hpe.com/us/en/software/licensing.html
+© Copyright 2023 Hewlett Packard Enterprise Development LP. This software is HPE proprietary and its use is subject to the terms and conditions of the HPE EULA and Software Licensing Terms, which may be amended from time to time (“HPE EULA”). By downloading, copying or using this software you agree to the terms of the HPE EULA. The HPE EULA may be found on the HPE website, currently at www.hpe.com/us/en/software/licensing.html
 
 ## Running Open Source Firmware on HPE Servers
 
@@ -12,7 +12,7 @@ The bootblock is supplied in binary form.  It consists of essential startup code
 This bootblock is for use with servers that have undergone the Transfer of Ownership process.  The customer public signing key must be stored in the secure element on the server.  If a public key is not present a ASIC specific customer keyblock is fallen back on.  The Transfer of Ownership Process is a secure method of storing customer signing keys and enabling customer firmware to run securely on HPE ProLiant servers.  
 
 ### GXP and HPE Silicon Root of Trust
-The Hewlett Packard Enterprise Silicon Root of Trust technology guarantees that HPE ProLiant servers will only run specific firmware.  The SOC verifies the hash of an immutable block of initial code before beginning execution.  Because of this, this block of code is matched to the SOC.  This code then verifies an HPE digital signature of the 2nd stage of code, also contained within the gxp-bootblock.
+The Hewlett Packard Enterprise Silicon Root of Trust technology guarantees that HPE ProLiant servers will only run specific firmware.  The SOC verifies the hash of an immutable block of initial code before beginning execution.  Because of this, this block of code is matched to the SOC.  This code then verifies an HPE digital signature of the 2nd stage of code, also contained within the gxp2-bootblock, and then jumps into uboot (after verifying the signature of uboot).
 
 ### Determine which iLO ASIC Revision is in a system
 When building a firmware image to flash on an HPE server, you need to know which version of the SOC (which fusings for the bootblock) is on the system.  If the wrong bootblock gets flashed, **the system will not be bootable**.  To determine the proper bootblock to use please get in contact with an HPE developer on the [OpenBMC Discord Channel](https://discord.gg/69Km47zH98).
